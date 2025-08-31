@@ -1,0 +1,148 @@
+<div
+  class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
+>
+  <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
+    <div class="text-center">
+      <h2 class="mt-6 text-3xl font-extrabold text-indigo-600">Regístrate</h2>
+    </div>
+    <form class="mt-8 space-y-6">
+      <div class="rounded-md shadow-sm space-y-4">
+        <div class="flex flex-row space-x-6">
+          <div>
+            <label
+              class="block text-sm font-medium text-gray-700"
+              for="floatingName"
+              >Nombre</label
+            >
+            <input
+              [(ngModel)]="name"
+              name="name"
+              id="name"
+              type="text"
+              autocomplete="email"
+              required
+              class="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="Nombre"
+            />
+          </div>
+          <div>
+            <label
+              class="block text-sm font-medium text-gray-700"
+              for="flatingLastname"
+              >Apellidos</label
+            >
+            <input
+              [(ngModel)]="lastname"
+              name="lastname"
+              id="lastname"
+              type="text"
+              autocomplete="email"
+              required
+              class="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="Apellidos"
+            />
+          </div>
+        </div>
+        <div>
+          <label
+            class="block text-sm font-medium text-gray-700"
+            for="floatingEmail"
+            >Email Address</label
+          >
+          <input
+            [(ngModel)]="email"
+            name="email"
+            id="email"
+            type="email"
+            autocomplete="email"
+            required
+            class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Email"
+          />
+        </div>
+
+        <div class="flex flex-row space-x-6">
+          <div>
+            <label
+              class="block text-sm font-medium text-gray-700"
+              for="floatingPassword"
+              >Password</label
+            >
+            <input
+              [(ngModel)]="password"
+              name="password"
+              id="password"
+              type="password"
+              autocomplete="new-password"
+              required
+              minlength="6"
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="Contraseña"
+            />
+          </div>
+          <div>
+            <label
+              class="block text-sm font-medium text-gray-700"
+              for="floatingRepeatPassword"
+              >Repeat Password</label
+            >
+            <input
+              [(ngModel)]="repeatPassword"
+              name="repeatPassword"
+              id="repeatPassword"
+              type="password"
+              autocomplete="new-password"
+              required
+              minlength="6"
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="Repite Contraseña"
+            />
+          </div>
+        </div>
+        <div>
+          <label
+            class="block text-sm font-medium text-gray-700"
+            for="floatingCredential"
+            >Credencial</label
+          >
+          <input
+            [(ngModel)]="credencial"
+            name="credencial"
+            id="credencial"
+            type="text"
+            autocomplete="email"
+            required
+            class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Credencial"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          (click)="addUser()"
+          class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          Regístrate
+        </button>
+      </div>
+    </form>
+
+    <div class="text-center text-sm">
+      <span class="text-gray-600">¿Ya tienes una cuenta? </span>
+      <a
+        routerLink="/login"
+        class="font-medium text-indigo-600 hover:text-indigo-500"
+      >
+        Iniciar Sesión
+      </a>
+    </div>
+    <div
+      *ngIf="loading"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+    >
+      <app-spinner></app-spinner>
+    </div>
+  </div>
+</div>
