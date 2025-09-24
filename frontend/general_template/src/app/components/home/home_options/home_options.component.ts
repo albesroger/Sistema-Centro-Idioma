@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'home-options',
-  imports: [ RouterLink],
+  imports: [],
   templateUrl: './home_options.component.html',
 })
 export class HomeOptionsComponent {}
