@@ -8,20 +8,11 @@ import { FormsModule } from '@angular/forms';
 import { User } from '../../interfaces/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorsService } from '../../services/errors.service';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [
-    CommonModule, 
-    RouterLink, 
-    FormsModule, 
-    SpinnerComponent,
-    NavbarComponent,
-    FooterComponent
-  ],
+  imports: [CommonModule, RouterLink, FormsModule, SpinnerComponent],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {

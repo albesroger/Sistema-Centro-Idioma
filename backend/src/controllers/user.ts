@@ -59,9 +59,55 @@ export const login = async (req: Request, res: Response) => {
 
   const token = jwt.sign(
     { email: email },
-    process.env.SECRET_KEY || `Jdz237797TH1dp7zjFzM`,
-    { expiresIn: "100000" }
+    process.env.SECRET_KEY || `Jdz237797TH1dp7zjFzM`
+    //{ expiresIn: "100000" }
   );
 
   return res.json({ token });
+};
+
+export const loadUser = async (req: Request, res: Response) => {
+  try {
+    // 1. Obtener el token del encabezado de autorización
+    const token = req.headers.authorization?.split(" ")[1];
+
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        msg: "No se proporcionó token de autenticación",
+      });
+    }
+
+    // 2. Verificar y decodificar el token
+    const decoded: any = jwt.verify(
+      token,
+      process.env.SECRET_KEY || "Jdz237797TH1dp7zjFzM"
+    );
+
+    // 3. Buscar al usuario por el email del token
+    const user = await User.findOne({
+      where: { email: decoded.email },
+      attributes: { exclude: ["password"] }, // No devolver la contraseña
+    });
+
+    if (!user) {
+      return res.status(404).json({ msg: "Usuario no encontrado" });
+    }
+
+    // 4. Devolver la información del usuario
+    const userData = user.get({ plain: true });
+
+    return res.status(200).json({
+      success: true,
+      data: userData,
+    });
+  } catch (error) {
+    console.error("Error al cargar el usuario:", error);
+    if (error instanceof jwt.JsonWebTokenError) {
+      return res.status(401).json({ msg: "Token inválido o expirado" });
+    }
+    return res
+      .status(500)
+      .json({ msg: "Error del servidor al cargar el usuario" });
+  }
 };

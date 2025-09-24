@@ -7,6 +7,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 import { guardGuard } from './utils/guard.guard';
 import { AddTaskComponent } from './components/addTask/addTask.component';
 import { InicioPageComponent } from './components/home/inicio_page/inicio_page.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -28,6 +29,11 @@ export const routes: Routes = [
   {
     path: 'addTask',
     component: AddTaskComponent,
+    canActivate: [guardGuard],
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
     canActivate: [guardGuard],
   },
   {

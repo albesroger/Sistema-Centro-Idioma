@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { User } from '../interfaces/user';
 
 @Injectable({
@@ -22,5 +22,39 @@ export class UserServiceService {
 
   login(user: User): Observable<string> {
     return this.http.post<string>(`${this.AppUrl}${this.APIUrl}/login`, user);
+  }
+
+  loadUser(): Observable<User> {
+    const token = localStorage.getItem('myToken');
+
+    if (!token) {
+      return throwError(
+        () => new Error('No se encontró token de autenticación')
+      );
+    }
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http
+      .get<{ success: boolean; data: User }>(
+        `${this.AppUrl}${this.APIUrl}/loadUser`,
+        {
+          headers,
+        }
+      )
+      .pipe(
+        tap(() => {}),
+        map((response) => {
+          if (!response.success || !response.data) {
+            throw new Error('Formato de respuesta inesperado del servidor');
+          }
+          return response.data;
+        }),
+        catchError((error) => {
+          return throwError(() => error);
+        })
+      );
   }
 }
