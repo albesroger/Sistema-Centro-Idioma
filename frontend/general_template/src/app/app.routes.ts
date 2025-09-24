@@ -19,12 +19,16 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
+    data: {
+      roles: ['admin'],
+    },
     component: DashboardComponent,
     canActivate: [guardGuard],
   },
   {
     path: 'addTask',
     component: AddTaskComponent,
+    canActivate: [guardGuard],
   },
   {
     path: 'maintenance',
@@ -37,11 +41,11 @@ export const routes: Routes = [
   {
     path: 'homePage',
     component: InicioPageComponent,
-    canActivate: [guardGuard],
+    //canActivate: [guardGuard],
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'homePage',
     pathMatch: 'full',
   },
   {

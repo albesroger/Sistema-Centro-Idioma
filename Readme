@@ -1,0 +1,5 @@
+Correr aplicacion
+->Frontend
+ -ng-serve
+->Backend
+ npx tsc --watch   

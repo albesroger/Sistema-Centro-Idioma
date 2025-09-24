@@ -7,19 +7,23 @@ export const Task = sequelize.define("Task", {
     type: DataTypes.INTEGER,
     autoIncrement: true,
   },
+
   taskID: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     allowNull: false,
   },
+
   name_of_item_writer: {
     type: DataTypes.STRING,
     allowNull: false,
   },
+
   team: {
     type: DataTypes.STRING,
     allowNull: false,
   },
+
   date: {
     type: DataTypes.DATE,
     allowNull: false,
@@ -29,23 +33,26 @@ export const Task = sequelize.define("Task", {
   main_topic_area: {
     type: DataTypes.STRING,
   },
+
   nature_of_content: {
     type: DataTypes.STRING,
   },
+
   vocabulary: {
     type: DataTypes.STRING,
   },
+
   grammar: {
     type: DataTypes.STRING,
   },
 
   //Nivel y Tiempo
   time_to_do_total_task: {
-    //in minutes
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER, //in minutes
   },
+
   task_level_estimated: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
   },
 
   //Resultados Esperados
@@ -62,11 +69,12 @@ export const Task = sequelize.define("Task", {
   feedback_provided_by: {
     type: DataTypes.STRING,
   },
+
   feedback_date: {
     type: DataTypes.DATE,
   },
+
   feedback_team: {
     type: DataTypes.STRING,
   },
 });
-

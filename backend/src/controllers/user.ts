@@ -17,22 +17,21 @@ export const register = async (req: Request, res: Response) => {
     });
   }
 
-  console.log("Estoy por aqui");
   const passwordHash = await bcrypt.hash(password, 10);
 
   try {
-    User.create({
+    await User.create({
       name: name,
       lastname: lastname,
       email: email,
       password: passwordHash,
       credencial: credencial,
     });
-    res.json({
+    return res.json({
       msg: `User ${name} ${lastname} created successfully`,
     });
   } catch (error) {
-    res.status(400).json({
+    return res.status(400).json({
       msg: `Existe un error al crear un usuario con el nombre ${name} ${lastname}`,
     });
   }
@@ -60,9 +59,9 @@ export const login = async (req: Request, res: Response) => {
 
   const token = jwt.sign(
     { email: email },
-    process.env.SECRET_KEY || `Jdz237797TH1dp7zjFzM`
-    //{ expiresIn: "10000" }
+    process.env.SECRET_KEY || `Jdz237797TH1dp7zjFzM`,
+    { expiresIn: "100000" }
   );
 
-  res.json({ token });
+  return res.json({ token });
 };

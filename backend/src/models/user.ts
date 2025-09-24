@@ -31,6 +31,9 @@ export const User = sequelize.define("User", {
   },
   status: {
     type: DataTypes.INTEGER,
-    
+  },
+  rol: {
+    type: DataTypes.STRING,
+    defaultValue: "profesor",
   },
 });

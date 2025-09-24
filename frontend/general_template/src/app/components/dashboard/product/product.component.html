@@ -54,8 +54,9 @@
                 type="button"
                 (click)="loadProductToEdit(item)"
                 class="text-indigo-600 hover:text-indigo-900 mr-4"
-                >Editar</button
               >
+                Editar
+              </button>
               <button
                 type="submit"
                 (click)="deleteProduct(item.id)"
@@ -74,9 +75,13 @@
     <button
       type="button"
       (click)="addProduct()"
-      class="focus:outline-none text-white {{editingProduct ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-green-700 hover:bg-green-800'}} focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+      class="focus:outline-none text-white {{
+        editingProduct
+          ? 'bg-yellow-500 hover:bg-yellow-600'
+          : 'bg-green-700 hover:bg-green-800'
+      }} focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
     >
-      {{editingProduct ? 'Actualizar' : 'Agregar'}}
+      {{ editingProduct ? "Actualizar" : "Agregar" }}
     </button>
     <button
       *ngIf="editingProduct"
