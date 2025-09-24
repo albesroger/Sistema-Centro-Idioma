@@ -11,6 +11,7 @@ import { ErrorsService } from '../../services/errors.service';
 
 @Component({
   selector: 'app-sing-in',
+  standalone: true,
   imports: [CommonModule, RouterLink, FormsModule, SpinnerComponent],
   templateUrl: './singIn.component.html',
 })
