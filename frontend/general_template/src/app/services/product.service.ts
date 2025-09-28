@@ -34,6 +34,9 @@ export class ProductService {
   }
 
   updateProduct(product: Product): Observable<any> {
-    return this.http.put(`${this.AppUrl}${this.APIUrl}/updateProduct/${product.id}`, product);
+    return this.http.put(
+      `${this.AppUrl}${this.APIUrl}/updateProduct/${product.id}`,
+      product
+    );
   }
 }

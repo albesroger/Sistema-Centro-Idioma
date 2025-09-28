@@ -16,12 +16,14 @@ import { ErrorsService } from '../../services/errors.service';
   templateUrl: './singIn.component.html',
 })
 export class SingInComponent implements OnInit {
+  id: number = 0;
   name: string = '';
   lastname: string = '';
   email: string = '';
   password: string = '';
   repeatPassword: string = '';
   credencial: string = '';
+  rol: string = 'profesor';
 
   loading: boolean = false;
 
@@ -67,11 +69,13 @@ export class SingInComponent implements OnInit {
 
     //Crear el objeto(user)
     const user: User = {
+      id: this.id,
       name: this.name,
       lastname: this.lastname,
       email: this.email,
       password: this.password,
       credencial: this.credencial,
+      rol: this.rol,
     };
     this.loading = true;
 

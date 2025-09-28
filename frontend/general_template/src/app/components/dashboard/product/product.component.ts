@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { Product } from '../../../interfaces/product';
-import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'dashboard-product',
-  imports: [CommonModule, NgFor, NgIf, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './product.component.html',
 })
 export class ProductComponent implements OnInit {

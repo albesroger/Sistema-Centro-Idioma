@@ -66,6 +66,45 @@ export const login = async (req: Request, res: Response) => {
   return res.json({ token });
 };
 
+export const deleteUser = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  User.destroy({
+    where: { id: id },
+  });
+
+  res.json({
+    msg: `User ${id} deleted successfully`,
+  });
+};
+
+export const getUser = async (_req: Request, res: Response) => {
+  const listUser = await User.findAll();
+  res.json(listUser);
+};
+
+export const updateUser = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { name, lastname, email, credencial, rol } = req.body;
+
+  User.update(
+    {
+      name: name,
+      lastname: lastname,
+      email: email,
+      credencial: credencial,
+      rol: rol,
+    },
+    {
+      where: { id: id },
+    }
+  );
+
+  res.json({
+    msg: `User ${id} updated successfully`,
+  });
+};
+
 export const loadUser = async (req: Request, res: Response) => {
   try {
     // 1. Obtener el token del encabezado de autorización

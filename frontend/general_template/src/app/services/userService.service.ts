@@ -24,6 +24,25 @@ export class UserServiceService {
     return this.http.post<string>(`${this.AppUrl}${this.APIUrl}/login`, user);
   }
 
+  getUser(): Observable<User[]> {
+    const token = localStorage.getItem('myToken');
+    const header = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<User[]>(`${this.AppUrl}${this.APIUrl}/getUser`, {
+      headers: header,
+    });
+  }
+
+  deleteUser(id: number): Observable<any> {
+    return this.http.delete(`${this.AppUrl}${this.APIUrl}/deleteUser/${id}`);
+  }
+
+  updateUser(user: User): Observable<any> {
+    return this.http.put(
+      `${this.AppUrl}${this.APIUrl}/updateUser/${user.id}`,
+      user
+    );
+  }
+
   loadUser(): Observable<User> {
     const token = localStorage.getItem('myToken');
 
